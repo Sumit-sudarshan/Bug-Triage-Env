@@ -1,0 +1,44 @@
+name: bug-triage
+version: "1.0"
+description: "RL environment for automated GitHub bug report triage"
+author: "Team Dhurandhar"
+
+environment:
+  entry_point: "src.env"
+  class_name: "BugTriageEnv"
+
+  observation_model: "src.models.BugTriageObservation"
+  action_model: "src.models.BugTriageAction"
+  reward_model: "src.models.BugTriageReward"
+
+tasks:
+  - id: "task_criticality"
+    name: "Criticality Detection"
+    difficulty: "easy"
+    description: "Determine if a bug report is critical or non-critical"
+    grader: "src.graders.grade_criticality"
+
+  - id: "task_severity"
+    name: "Severity Scoring"
+    difficulty: "medium"
+    description: "Assign a severity score (1-5) to a bug report"
+    grader: "src.graders.grade_severity"
+
+  - id: "task_root_cause_assignee"
+    name: "Root Cause & Assignee"
+    difficulty: "hard"
+    description: "Identify root cause category and recommend the best assignee"
+    grader: "src.graders.grade_root_cause_assignee"
+
+inference:
+  script: "inference.py"
+  env_vars:
+    - API_BASE_URL
+    - MODEL_NAME
+    - HF_TOKEN
+
+deployment:
+  platform: "huggingface-spaces"
+  docker: true
+  tags:
+    - "openenv"

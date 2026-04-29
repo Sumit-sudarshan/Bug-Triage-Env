@@ -1,0 +1,15 @@
+.env
+.env.local
+llm_cache.json
+output.log
+data/bugs_raw.json
+models/
+__pycache__/
+*.pyc
+.git
+.claude
+.pytest_cache
+dhurandhar-venv/
+venv/
+env/
+.DS_Store

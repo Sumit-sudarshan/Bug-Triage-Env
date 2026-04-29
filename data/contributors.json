@@ -1,0 +1,1826 @@
+{
+  "python/cpython": {
+    "contributors": [
+      {
+        "name": "gvanrossum",
+        "work_area": [
+          "bug"
+        ],
+        "expertise_labels": [
+          "stdlib",
+          "type-bug"
+        ]
+      },
+      {
+        "name": "vstinner",
+        "work_area": [
+          "environment",
+          "performance",
+          "bug"
+        ],
+        "expertise_labels": [
+          "3.9 (eol)",
+          "extension-modules",
+          "interpreter-core",
+          "os-mac",
+          "stdlib",
+          "tests",
+          "topic-repl",
+          "topic-tkinter",
+          "type-bug"
+        ]
+      },
+      {
+        "name": "benjaminp",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "birkenfeld",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "freddrake",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "serhiy-storchaka",
+        "work_area": [
+          "environment",
+          "bug"
+        ],
+        "expertise_labels": [
+          "3.15",
+          "performance",
+          "stdlib",
+          "type-bug"
+        ]
+      },
+      {
+        "name": "rhettinger",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "pitrou",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jackjansen",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "loewis",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "tim-one",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "brettcannon",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "akuchling",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "warsaw",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "bitdancer",
+        "work_area": [],
+        "expertise_labels": []
+      }
+    ],
+    "teams": [
+      "stdlib",
+      "interpreter",
+      "gc",
+      "typing",
+      "asyncio",
+      "io",
+      "ssl"
+    ]
+  },
+  "pallets/flask": {
+    "contributors": [
+      {
+        "name": "davidism",
+        "work_area": [
+          "environment",
+          "bug",
+          "documentation",
+          "performance",
+          "design"
+        ],
+        "expertise_labels": [
+          "async",
+          "docs",
+          "typing"
+        ]
+      },
+      {
+        "name": "mitsuhiko",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "untitaker",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "rduplain",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "greyli",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "dependabot-preview[bot]",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "DasIch",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "dependabot[bot]",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "kennethreitz",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "pgjones",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "pre-commit-ci[bot]",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "keyan",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "ThiefMaster",
+        "work_area": [
+          "bug",
+          "environment"
+        ],
+        "expertise_labels": []
+      },
+      {
+        "name": "defuz",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "lepture",
+        "work_area": [],
+        "expertise_labels": []
+      }
+    ],
+    "teams": [
+      "routing",
+      "blueprints",
+      "cli",
+      "testing",
+      "templating",
+      "security"
+    ]
+  },
+  "numpy/numpy": {
+    "contributors": [
+      {
+        "name": "charris",
+        "work_area": [
+          "environment",
+          "bug"
+        ],
+        "expertise_labels": [
+          "00 - bug",
+          "component: simd"
+        ]
+      },
+      {
+        "name": "mattip",
+        "work_area": [
+          "environment",
+          "bug"
+        ],
+        "expertise_labels": [
+          "00 - bug",
+          "component: numpy.f2py",
+          "component: numpy.fft",
+          "sprintable"
+        ]
+      },
+      {
+        "name": "seberg",
+        "work_area": [
+          "environment",
+          "bug"
+        ],
+        "expertise_labels": [
+          "00 - bug",
+          "54 - needs decision",
+          "component: numpy._core",
+          "sprintable"
+        ]
+      },
+      {
+        "name": "teoliphant",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "cournape",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "rgommers",
+        "work_area": [
+          "environment",
+          "documentation",
+          "bug"
+        ],
+        "expertise_labels": [
+          "00 - bug",
+          "04 - documentation",
+          "build issues",
+          "ci",
+          "defect",
+          "free-threading",
+          "meson",
+          "official binaries"
+        ]
+      },
+      {
+        "name": "eric-wieser",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "pearu",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jorenham",
+        "work_area": [
+          "environment",
+          "bug"
+        ],
+        "expertise_labels": [
+          "41 - static typing"
+        ]
+      },
+      {
+        "name": "pv",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "ngoldbaum",
+        "work_area": [
+          "environment",
+          "bug"
+        ],
+        "expertise_labels": [
+          "00 - bug",
+          "39 - free-threading",
+          "57 - close?",
+          "component: numpy._core"
+        ]
+      },
+      {
+        "name": "mwiebe",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "juliantaylor",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "stefanv",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "dependabot[bot]",
+        "work_area": [],
+        "expertise_labels": []
+      }
+    ],
+    "teams": [
+      "core",
+      "linalg",
+      "fft",
+      "random",
+      "ma",
+      "testing",
+      "io"
+    ]
+  },
+  "pytorch/pytorch": {
+    "contributors": [
+      {
+        "name": "pytorchmergebot",
+        "work_area": [
+          "bug",
+          "environment",
+          "documentation"
+        ],
+        "expertise_labels": [
+          "actionable",
+          "bot-mislabeled",
+          "bot-triaged",
+          "dynamo-triage-dec2025",
+          "has workaround",
+          "module: bfloat16",
+          "module: codegen",
+          "module: compile ux",
+          "module: correctness (silent)",
+          "module: cpp",
+          "module: docs",
+          "module: dynamic shapes",
+          "module: dynamo",
+          "module: fsdp",
+          "module: inductor"
+        ]
+      },
+      {
+        "name": "ezyang",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "malfet",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "bot-triaged",
+          "needs reproduction",
+          "oncall: pt2",
+          "triage review",
+          "triaged"
+        ]
+      },
+      {
+        "name": "zou3519",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jerryzh168",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "cyyever",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "soumith",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "gchanan",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "anijain2305",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "peterbell10",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "apaszke",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "suo",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "Chillee",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "albanD",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "janeyx99",
+        "work_area": [
+          "bug"
+        ],
+        "expertise_labels": [
+          "module: optimizer",
+          "triaged"
+        ]
+      }
+    ],
+    "teams": [
+      "autograd",
+      "distributed",
+      "jit",
+      "quantization",
+      "mobile",
+      "onnx",
+      "cuda"
+    ]
+  },
+  "pandas-dev/pandas": {
+    "contributors": [
+      {
+        "name": "jbrockmendel",
+        "work_area": [
+          "environment",
+          "documentation"
+        ],
+        "expertise_labels": [
+          "bug",
+          "categorical",
+          "closing candidate",
+          "copy / view semantics",
+          "docs",
+          "dtype conversions",
+          "indexing",
+          "io hdf5",
+          "performance"
+        ]
+      },
+      {
+        "name": "jreback",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "wesm",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jorisvandenbossche",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "docs",
+          "dtype conversions",
+          "numeric operations"
+        ]
+      },
+      {
+        "name": "mroeschke",
+        "work_area": [
+          "environment",
+          "bug",
+          "design",
+          "performance",
+          "documentation"
+        ],
+        "expertise_labels": [
+          "api - consistency",
+          "bug",
+          "categorical",
+          "constructors",
+          "datetime",
+          "deprecate",
+          "docs",
+          "dtype conversions",
+          "error reporting",
+          "extensionarray",
+          "frequency",
+          "groupby",
+          "index",
+          "indexing",
+          "internals"
+        ]
+      },
+      {
+        "name": "phofl",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "TomAugspurger",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "simonjayhawkins",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "cpcloud",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "rhshadrach",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "bug",
+          "categorical",
+          "closing candidate",
+          "copy / view semantics",
+          "groupby",
+          "performance"
+        ]
+      },
+      {
+        "name": "tuhinsharma121",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "gfyoung",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "topper-123",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "sinhrks",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "MarcoGorelli",
+        "work_area": [],
+        "expertise_labels": []
+      }
+    ],
+    "teams": [
+      "indexing",
+      "io",
+      "groupby",
+      "dtypes",
+      "plotting",
+      "reshaping",
+      "missing-data"
+    ]
+  },
+  "scikit-learn/scikit-learn": {
+    "contributors": [
+      {
+        "name": "ogrisel",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "amueller",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "larsmans",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "agramfort",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "glouppe",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "thomasjpfan",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "pprett",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "mblondel",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "vene",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jnothman",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "glemaitre",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "lesteve",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "arjoly",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jeremiedbb",
+        "work_area": [
+          "environment",
+          "bug",
+          "documentation"
+        ],
+        "expertise_labels": [
+          "blocker",
+          "breaking change",
+          "bug",
+          "cython",
+          "hard",
+          "module:cluster",
+          "module:covariance",
+          "module:cross_decomposition",
+          "module:decomposition",
+          "module:impute",
+          "module:inspection",
+          "module:linear_model",
+          "module:metrics",
+          "module:model_selection",
+          "module:preprocessing"
+        ]
+      },
+      {
+        "name": "scikit-learn-bot",
+        "work_area": [],
+        "expertise_labels": []
+      }
+    ],
+    "teams": [
+      "classification",
+      "regression",
+      "clustering",
+      "preprocessing",
+      "metrics",
+      "pipeline"
+    ]
+  },
+  "huggingface/transformers": {
+    "contributors": [
+      {
+        "name": "ydshieh",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "thomwolf",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "sgugger",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "LysandreJik",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "patrickvonplaten",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "gante",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": []
+      },
+      {
+        "name": "stas00",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "ArthurZucker",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "bug",
+          "fixme",
+          "good second issue"
+        ]
+      },
+      {
+        "name": "Rocketknight1",
+        "work_area": [
+          "bug",
+          "environment",
+          "design"
+        ],
+        "expertise_labels": [
+          "bug",
+          "code agent slop"
+        ]
+      },
+      {
+        "name": "zucchini-nlp",
+        "work_area": [
+          "bug",
+          "environment"
+        ],
+        "expertise_labels": [
+          "bug"
+        ]
+      },
+      {
+        "name": "julien-c",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "Cyrilvallez",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "bug"
+        ]
+      },
+      {
+        "name": "younesbelkada",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "NielsRogge",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "sshleifer",
+        "work_area": [],
+        "expertise_labels": []
+      }
+    ],
+    "teams": [
+      "modeling",
+      "tokenization",
+      "training",
+      "generation",
+      "onnx",
+      "quantization"
+    ]
+  },
+  "pydantic/pydantic": {
+    "contributors": [
+      {
+        "name": "samuelcolvin",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "Viicos",
+        "work_area": [
+          "environment",
+          "bug",
+          "documentation",
+          "performance",
+          "design"
+        ],
+        "expertise_labels": [
+          "bug v2",
+          "deferred",
+          "pending",
+          "topic-annotations",
+          "topic-discriminated unions",
+          "topic-generics",
+          "topic-mypy plugin",
+          "topic-serialization",
+          "topic-unions"
+        ]
+      },
+      {
+        "name": "sydney-runkle",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "dependabot[bot]",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "dmontagu",
+        "work_area": [
+          "external"
+        ],
+        "expertise_labels": [
+          "bug v1",
+          "topic-json schema"
+        ]
+      },
+      {
+        "name": "davidhewitt",
+        "work_area": [
+          "performance",
+          "bug"
+        ],
+        "expertise_labels": [
+          "bug v2",
+          "pending",
+          "topic-performance"
+        ]
+      },
+      {
+        "name": "adriangb",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "hramezani",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "PrettyWood",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "Kludex",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": []
+      },
+      {
+        "name": "dependabot-preview[bot]",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "tpdorsey",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "lig",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "pyup-bot",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "tiangolo",
+        "work_area": [
+          "documentation",
+          "environment",
+          "bug",
+          "design"
+        ],
+        "expertise_labels": [
+          "bug"
+        ]
+      }
+    ],
+    "teams": [
+      "validation",
+      "serialization",
+      "types",
+      "config",
+      "schema",
+      "generics"
+    ]
+  },
+  "matplotlib/matplotlib": {
+    "contributors": [
+      {
+        "name": "tacaswell",
+        "work_area": [
+          "bug"
+        ],
+        "expertise_labels": [
+          "maintenance"
+        ]
+      },
+      {
+        "name": "QuLogic",
+        "work_area": [
+          "environment",
+          "bug"
+        ],
+        "expertise_labels": [
+          "ci: testing",
+          "documentation",
+          "first-contribution",
+          "maintenance",
+          "status: confirmed bug",
+          "topic: images",
+          "topic: plotting methods",
+          "topic: widgets/ui"
+        ]
+      },
+      {
+        "name": "anntzer",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "topic: text/usetex"
+        ]
+      },
+      {
+        "name": "timhoffm",
+        "work_area": [
+          "bug",
+          "environment",
+          "documentation"
+        ],
+        "expertise_labels": [
+          "documentation",
+          "first-contribution",
+          "gui: tk",
+          "status: inactive",
+          "status: needs confirmation",
+          "topic: dpi and resolution",
+          "topic: hist",
+          "topic: mplot3d",
+          "topic: plotting methods",
+          "topic: text/fonts",
+          "topic: ticks axis labels"
+        ]
+      },
+      {
+        "name": "mdboom",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jklymak",
+        "work_area": [
+          "bug"
+        ],
+        "expertise_labels": []
+      },
+      {
+        "name": "jdh2358",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "dstansby",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "efiring",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "ksunden",
+        "work_area": [
+          "bug"
+        ],
+        "expertise_labels": [
+          "topic: plotting methods"
+        ]
+      },
+      {
+        "name": "oscargus",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "NelleV",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jenshnielsen",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "story645",
+        "work_area": [
+          "bug"
+        ],
+        "expertise_labels": [
+          "topic: contour",
+          "topic: units and array ducktypes"
+        ]
+      },
+      {
+        "name": "WeatherGod",
+        "work_area": [],
+        "expertise_labels": []
+      }
+    ],
+    "teams": [
+      "axes",
+      "figure",
+      "backends",
+      "animation",
+      "widgets",
+      "text",
+      "colors"
+    ]
+  },
+  "home-assistant/core": {
+    "contributors": [
+      {
+        "name": "bdraco",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "balloob",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "epenet",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "emontnemery",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "frenck",
+        "work_area": [
+          "bug"
+        ],
+        "expertise_labels": []
+      },
+      {
+        "name": "joostlek",
+        "work_area": [
+          "bug",
+          "environment",
+          "documentation"
+        ],
+        "expertise_labels": [
+          "integration: axis",
+          "integration: backblaze_b2",
+          "integration: bsblan",
+          "integration: lutron",
+          "integration: miele",
+          "integration: seventeentrack",
+          "integration: unifi_access"
+        ]
+      },
+      {
+        "name": "cdce8p",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "fabaff",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "gjohansson-ST",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "integration: min_max"
+        ]
+      },
+      {
+        "name": "jbouwh",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "bachya",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "mib1185",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "frontend",
+          "integration: systemmonitor"
+        ]
+      },
+      {
+        "name": "pvizeli",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "bramkragten",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "allenporter",
+        "work_area": [
+          "documentation",
+          "bug"
+        ],
+        "expertise_labels": [
+          "integration: roborock"
+        ]
+      }
+    ],
+    "teams": [
+      "integrations",
+      "automation",
+      "frontend",
+      "config",
+      "networking",
+      "zwave",
+      "mqtt"
+    ]
+  },
+  "google/jax": {
+    "contributors": [
+      {
+        "name": "Google-ML-Automation",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "hawkinsp",
+        "work_area": [
+          "bug",
+          "environment"
+        ],
+        "expertise_labels": [
+          "bug",
+          "needs info",
+          "nvidia gpu",
+          "p2 (eventual)"
+        ]
+      },
+      {
+        "name": "mattjj",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jakevdp",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "yashk2810",
+        "work_area": [
+          "bug"
+        ],
+        "expertise_labels": [
+          "bug"
+        ]
+      },
+      {
+        "name": "gnecula",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "apaszke",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "superbobry",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "froystig",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "skye",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "sharadmv",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "bchetioui",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "allanrenucci",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "dfm",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "justinjfu",
+        "work_area": [],
+        "expertise_labels": []
+      }
+    ],
+    "teams": [
+      "compiler",
+      "xla",
+      "autograd",
+      "pmap",
+      "sharding",
+      "random",
+      "linalg"
+    ]
+  },
+  "scipy/scipy": {
+    "contributors": [
+      {
+        "name": "rgommers",
+        "work_area": [
+          "environment",
+          "documentation",
+          "bug"
+        ],
+        "expertise_labels": [
+          "00 - bug",
+          "04 - documentation",
+          "build issues",
+          "ci",
+          "defect",
+          "free-threading",
+          "meson",
+          "official binaries"
+        ]
+      },
+      {
+        "name": "pv",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "mdhaber",
+        "work_area": [
+          "environment",
+          "bug"
+        ],
+        "expertise_labels": [
+          "array types",
+          "defect",
+          "scipy.stats",
+          "upstream bug"
+        ]
+      },
+      {
+        "name": "ev-br",
+        "work_area": [
+          "documentation"
+        ],
+        "expertise_labels": [
+          "documentation",
+          "scipy.interpolate"
+        ]
+      },
+      {
+        "name": "tylerjereddy",
+        "work_area": [
+          "bug",
+          "environment"
+        ],
+        "expertise_labels": [
+          "defect",
+          "scipy.linalg",
+          "scipy.sparse"
+        ]
+      },
+      {
+        "name": "WarrenWeckesser",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "andyfaff",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "build issues"
+        ]
+      },
+      {
+        "name": "teoliphant",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "cournape",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "ilayn",
+        "work_area": [
+          "bug"
+        ],
+        "expertise_labels": [
+          "ci",
+          "scipy.linalg"
+        ]
+      },
+      {
+        "name": "alexbrc",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "tupui",
+        "work_area": [
+          "bug",
+          "environment"
+        ],
+        "expertise_labels": [
+          "defect",
+          "scipy.ndimage",
+          "scipy.stats"
+        ]
+      },
+      {
+        "name": "pearu",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "lucascolley",
+        "work_area": [
+          "environment",
+          "bug"
+        ],
+        "expertise_labels": [
+          "array types",
+          "build issues",
+          "ci",
+          "defect",
+          "maintenance",
+          "scipy.optimize",
+          "scipy.spatial"
+        ]
+      },
+      {
+        "name": "person142",
+        "work_area": [],
+        "expertise_labels": []
+      }
+    ],
+    "teams": [
+      "optimize",
+      "signal",
+      "sparse",
+      "stats",
+      "integrate",
+      "interpolate",
+      "linalg"
+    ]
+  },
+  "tiangolo/fastapi": {
+    "contributors": [
+      {
+        "name": "tiangolo",
+        "work_area": [
+          "documentation",
+          "environment",
+          "bug",
+          "design"
+        ],
+        "expertise_labels": [
+          "bug"
+        ]
+      },
+      {
+        "name": "github-actions[bot]",
+        "work_area": [
+          "environment",
+          "bug"
+        ],
+        "expertise_labels": [
+          "bug",
+          "solved",
+          "status: closed as inactive",
+          "status: inactive",
+          "topic: date handling",
+          "topic: pcolor/pcolormesh"
+        ]
+      },
+      {
+        "name": "dependabot[bot]",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "YuriiMotov",
+        "work_area": [
+          "bug",
+          "documentation"
+        ],
+        "expertise_labels": [
+          "bug"
+        ]
+      },
+      {
+        "name": "alejsdev",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "pre-commit-ci[bot]",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jaystone776",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "valentinDruzhinin",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "ceb10n",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "Kludex",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": []
+      },
+      {
+        "name": "waynerv",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "tokusumi",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "hasansezertasan",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "SwftAlpc",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "svlandeg",
+        "work_area": [
+          "design",
+          "environment"
+        ],
+        "expertise_labels": [
+          "answered",
+          "bug"
+        ]
+      }
+    ],
+    "teams": [
+      "routing",
+      "dependencies",
+      "security",
+      "websockets",
+      "openapi",
+      "middleware"
+    ]
+  },
+  "ansible/ansible": {
+    "contributors": [
+      {
+        "name": "mpdehaan",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "bcoca",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "affects_2.12",
+          "bug",
+          "easyfix",
+          "has_pr",
+          "module",
+          "p3"
+        ]
+      },
+      {
+        "name": "jimi-c",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "abadger",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "mattclay",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "affects_2.13",
+          "affects_2.15",
+          "affects_2.20",
+          "bug",
+          "has_pr",
+          "module",
+          "p3",
+          "verified"
+        ]
+      },
+      {
+        "name": "sivel",
+        "work_area": [
+          "environment",
+          "bug",
+          "performance"
+        ],
+        "expertise_labels": [
+          "affects_2.18",
+          "affects_2.19",
+          "affects_2.20",
+          "bug",
+          "has_pr",
+          "module",
+          "needs_triage",
+          "p2",
+          "waiting_on_contributor"
+        ]
+      },
+      {
+        "name": "Akasurde",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "affects_2.18",
+          "affects_2.20",
+          "bug",
+          "easyfix",
+          "has_pr",
+          "module",
+          "needs_verified",
+          "p3",
+          "verified"
+        ]
+      },
+      {
+        "name": "dagwieers",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jctanner",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "resmo",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jborean93",
+        "work_area": [
+          "bug"
+        ],
+        "expertise_labels": [
+          "affects_2.20",
+          "bug",
+          "has_pr"
+        ]
+      },
+      {
+        "name": "felixfontein",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "s-hertel",
+        "work_area": [
+          "environment",
+          "bug",
+          "design"
+        ],
+        "expertise_labels": [
+          "affects_2.14",
+          "affects_2.18",
+          "affects_2.20",
+          "bug",
+          "has_pr",
+          "module",
+          "needs_template",
+          "p3",
+          "verified"
+        ]
+      },
+      {
+        "name": "mkrizek",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "affects_2.19",
+          "affects_2.20",
+          "bug"
+        ]
+      },
+      {
+        "name": "caphrim007",
+        "work_area": [],
+        "expertise_labels": []
+      }
+    ],
+    "teams": [
+      "modules",
+      "plugins",
+      "networking",
+      "cloud",
+      "cli",
+      "inventory",
+      "vault"
+    ]
+  },
+  "aws/aws-cli": {
+    "contributors": [
+      {
+        "name": "aws-sdk-python-automation",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "jamesls",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "unicode"
+        ]
+      },
+      {
+        "name": "kyleknap",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "awstools",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "JordonPhillips",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "garnaat",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "stealthycoin",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "joguSD",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "mwunderl",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "bisdavid",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "elysahall",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "danielgtaylor",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "kdaily",
+        "work_area": [
+          "environment"
+        ],
+        "expertise_labels": [
+          "s3"
+        ]
+      },
+      {
+        "name": "nateprewitt",
+        "work_area": [],
+        "expertise_labels": []
+      },
+      {
+        "name": "dstufft",
+        "work_area": [],
+        "expertise_labels": []
+      }
+    ],
+    "teams": [
+      "s3",
+      "ec2",
+      "iam",
+      "lambda",
+      "cloudformation",
+      "ecs",
+      "cli"
+    ]
+  }
+}

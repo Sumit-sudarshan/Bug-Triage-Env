@@ -1,0 +1,143 @@
+graph TD
+    subgraph "RL Loop"
+        START(["Agent starts episode"])
+        RESET["env.reset(task_id)
+        Returns first Observation"]
+        OBS["BugTriageObservation
+        ┌─────────────────────┐
+        │ task_id             │
+        │ bug_report:         │
+        │   title, body,      │
+        │   labels, repo      │
+        │ available_assignees │
+        │ step / max_steps    │
+        └─────────────────────┘"]
+        AGENT["Agent (LLM) decides
+        Reads bug report,
+        reasons about it,
+        produces an action"]
+        ACTION["BugTriageAction
+        ┌─────────────────────┐
+        │ Task 1: criticality │
+        │ Task 2: severity    │
+        │ Task 3: root_cause  │
+        │         + assignee  │
+        │ confidence (0-1)    │
+        │ reasoning (text)    │
+        └─────────────────────┘"]
+        STEP["env.step(action)
+        Returns (obs, reward,
+        done, info)"]
+
+        START --> RESET --> OBS --> AGENT --> ACTION --> STEP
+    end
+
+    subgraph "Inside env.step()"
+        direction TB
+        VALIDATE["Validate action
+        Check task_id matches,
+        required fields present"]
+        GRADER["Select grader by task_id
+        ┌──────────────────────────┐
+        │ task_criticality:        │
+        │   grade_criticality()    │
+        │   Binary: 1.0 or 0.0    │
+        │                          │
+        │ task_severity:           │
+        │   grade_severity()       │
+        │   Partial: 1.0/0.7/0.4  │
+        │                          │
+        │ task_root_cause_assignee:│
+        │   grade_root_cause()     │
+        │   Weighted: 0.6RC+0.4A  │
+        └──────────────────────────┘"]
+        REWARD_CALC["RewardCalculator.compute()
+        ┌──────────────────────────┐
+        │ base_score (from grader) │
+        │ + confidence_bonus       │
+        │ + reasoning_bonus        │
+        │ + edge_case_bonus        │
+        │ = total (clamped 0-1)    │
+        └──────────────────────────┘"]
+        RESULT["BugTriageReward
+        ┌──────────────────────────┐
+        │ base_score: 0.84         │
+        │ confidence_bonus: +0.08  │
+        │ reasoning_bonus: +0.05   │
+        │ edge_case_bonus: 0.0     │
+        │ total: 0.97              │
+        └──────────────────────────┘"]
+
+        VALIDATE --> GRADER --> REWARD_CALC --> RESULT
+    end
+
+    STEP --> VALIDATE
+    RESULT --> DONE
+
+    DONE{"done?"}
+    DONE -->|"No: next bug"| OBS
+    DONE -->|"Yes: episode ends"| SCORE
+
+    SCORE["Final Score
+    Average of all
+    episode rewards"]
+
+    subgraph "3 Tasks = 1 Full Run"
+        direction LR
+        T1["Task 1: Criticality
+        60 episodes
+        Easy"]
+        T2["Task 2: Severity
+        60 episodes
+        Medium"]
+        T3["Task 3: Root Cause
+        60 episodes
+        Hard"]
+        OVERALL["Overall Score
+        Avg across
+        180 episodes"]
+
+        T1 --> T2 --> T3 --> OVERALL
+    end
+
+    SCORE --> T1
+
+    subgraph "Ground Truth (hidden from agent)"
+        GT["BugGroundTruth
+        ┌─────────────────────┐
+        │ criticality: critical│
+        │ severity: 4 (high)  │
+        │ root_cause: bug     │
+        │ assignee: alice     │
+        │ is_ambiguous: false │
+        └─────────────────────┘"]
+        DATA[("bugs_processed.json
+        180 real GitHub bugs
+        with verified labels")]
+        DATA --> GT
+    end
+
+    GT -.->|"compared against
+    agent's action"| GRADER
+
+    subgraph "Stdout Format (inference.py)"
+        S1["[START] task=task_criticality env=bug-triage model=gpt-4"]
+        S2["[STEP] step=1 action=classify('critical') reward=1.00 done=true error=null"]
+        S3["[STEP] step=2 action=classify('non_critical') reward=0.00 done=true error=null"]
+        S4["[END] success=true steps=60 score=0.842 rewards=1.00,0.00,..."]
+        S1 --> S2 --> S3 --> S4
+    end
+
+    %% Styling
+    style START fill:#4CAF50,stroke:#333,color:#fff
+    style AGENT fill:#2196F3,stroke:#333,color:#fff
+    style GRADER fill:#90EE90,stroke:#333
+    style REWARD_CALC fill:#90EE90,stroke:#333
+    style RESULT fill:#FFD700,stroke:#333
+    style DONE fill:#FF9800,stroke:#333,color:#fff
+    style SCORE fill:#FFD700,stroke:#333
+    style OVERALL fill:#FFD700,stroke:#333,stroke-width:3px
+    style GT fill:#E0E0E0,stroke:#333
+    style DATA fill:#E0E0E0,stroke:#333
+    style OBS fill:#E3F2FD,stroke:#333
+    style ACTION fill:#E3F2FD,stroke:#333

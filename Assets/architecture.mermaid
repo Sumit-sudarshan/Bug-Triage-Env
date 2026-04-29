@@ -1,0 +1,215 @@
+%%{init: {'theme': 'base', 'themeVariables': {'fontSize': '14px', 'primaryColor': '#ECECFF', 'primaryTextColor': '#333', 'primaryBorderColor': '#9370DB', 'lineColor': '#333333', 'secondaryColor': '#E3F2FD', 'tertiaryColor': '#E0E0E0', 'background': '#ffffff', 'mainBkg': '#ECECFF', 'nodeBorder': '#9370DB', 'clusterBkg': 'rgba(232,232,232,0.5)', 'clusterBorder': '#9370DB', 'titleColor': '#333', 'edgeLabelBackground': '#ffffff'}}}%%
+flowchart TB
+
+    %% ============================================================
+    %% TITLE
+    %% ============================================================
+    subgraph TITLE [" "]
+        direction LR
+        T1["Bug Report Triage - Full Architecture\nTeam Dhurandhar | OpenEnv Hackathon"]
+    end
+
+    %% ============================================================
+    %% SOURCE FILES
+    %% ============================================================
+    subgraph DATA_FILES ["Data & Fetching"]
+        direction TB
+        GF["src/github_fetcher.py\n- GitHubFetcher class\n- fetch_issues()\n- fetch_comments_parallel()\n- process_raw_to_structured()\n- label_ground_truth()\n- run_full_pipeline()"]
+        UTILS["src/utils.py\n- load_json() / save_json()\n- validate_bug_entry()\n- validate_dataset()\n- get_data_distribution()"]
+    end
+
+    subgraph ENV_FILES ["Environment & Tasks"]
+        direction TB
+        ENV["src/env.py\n- BugTriageEnv class\n- reset() -> BugTriageObservation\n- step(action) -> (obs, reward, done, info)\n- state() -> dict\n- _grade() dispatcher"]
+        TASKS["src/tasks.py\n- TASK_DEFINITIONS dict\n- get_all_task_ids()\n- validate_task_id()\n- get_required_fields()"]
+    end
+
+    subgraph GRADING_FILES ["Grading & Rewards"]
+        direction TB
+        GRADERS["src/graders.py\n- grade_criticality()\n- grade_severity()\n- grade_root_cause_assignee()\n- RELATED_CATEGORIES\n- _same_team()"]
+        REWARD["src/reward.py\n- RewardCalculator class\n- compute(base_score, action, gt)\n- confidence_bonus\n- reasoning_bonus\n- edge_case_bonus"]
+    end
+
+    subgraph INFERENCE_FILES ["Inference & Deployment"]
+        direction TB
+        INF["inference.py\n- call_llm(system, user)\n- run_task(env, task_id, episodes)\n- main()\n- 3 system prompts\n- DEFAULTS fallback"]
+        DOCKER["Dockerfile\n- python:3.11-slim\n- pip install requirements\n- CMD python inference.py\n- EXPOSE 7860"]
+        OPENENV["openenv.yaml\n- entry_point: src.env\n- class: BugTriageEnv\n- 3 task definitions\n- deployment: HF Spaces"]
+        README["README.md\n- Setup instructions\n- Task descriptions\n- Baseline scores\n- Architecture diagram"]
+    end
+
+    subgraph SHARED_FILES ["Shared"]
+        direction TB
+        MODELS["src/models.py\n- CriticalityLabel enum\n- SeverityLevel enum\n- RootCauseCategory enum\n- BugReport\n- BugTriageObservation\n- BugTriageAction\n- BugTriageReward\n- BugGroundTruth"]
+        REQS["requirements.txt\n- pydantic, openai, requests\n- python-dotenv, PyGithub\n- pytest, pytest-cov"]
+    end
+
+    %% ============================================================
+    %% DATA PIPELINE
+    %% ============================================================
+    subgraph DATA_PIPELINE ["DATA PIPELINE"]
+        direction TB
+        GH_API["GitHub REST API\n5 repos:\n- pytorch/pytorch\n- pallets/flask\n- tiangolo/fastapi\n- numpy/numpy\n- python/cpython"]
+        FETCH["GitHubFetcher.run_full_pipeline()\n1. fetch_issues() x5 repos (parallel)\n2. fetch_comments_parallel()\n3. process_raw_to_structured()\n4. label_ground_truth() (keyword heuristics)"]
+        RAW["data/bugs_raw.json\n~555 raw GitHub issues\n3.8MB"]
+        PROCESSED["data/bugs_processed.json\n185 labeled bugs\n655KB"]
+        CONTRIBS["data/contributors.json\nPer-repo contributor lists\n+ team names\n6.6KB"]
+    end
+
+    GH_API -->|"REST API calls\nrate-limited 3 req/s"| FETCH
+    FETCH -->|"save_to_json()"| RAW
+    FETCH -->|"label_ground_truth()\n+ save_to_json()"| PROCESSED
+    FETCH -->|"fetch_contributors()\n+ save_to_json()"| CONTRIBS
+
+    %% ============================================================
+    %% GROUND TRUTH LABELING DETAIL
+    %% ============================================================
+    subgraph GT_LABELING ["Ground Truth Labeling (Keyword Heuristics)"]
+        direction LR
+        GT_CRIT["Criticality\nCRITICAL_KEYWORDS:\ncrash, security, segfault,\ndata loss, regression..."]
+        GT_SEV["Severity 1-5\nSEVERITY_LABEL_MAP:\np0->5, p1->4, p2->3,\np3->2, trivial->1"]
+        GT_RC["Root Cause\nROOT_CAUSE_KEYWORDS:\nbug, performance, environment,\ndesign, documentation, external"]
+        GT_ASN["Assignee\nclosed_by user\nor issue author"]
+    end
+
+    FETCH --> GT_LABELING
+
+    %% ============================================================
+    %% ENVIRONMENT CORE
+    %% ============================================================
+    subgraph ENV_CORE ["RL ENVIRONMENT"]
+        direction TB
+        ENV_INIT["BugTriageEnv.__init__()\n- Load bugs_processed.json\n- Shuffle with seed=42\n- Init RewardCalculator\n- Set task cycling"]
+        ENV_RESET["reset(task_id=None)\n- Cycle to next task\n- Select next bug\n- Parse BugGroundTruth (hidden)\n- Build BugReport\n- Get available_assignees\n- Return BugTriageObservation"]
+        ENV_STEP["step(action: BugTriageAction)\n- Validate task_id match\n- Validate bug_id match\n- Call _grade() dispatcher\n- Call reward_calculator.compute()\n- Return (obs, reward, done, info)"]
+        GRADE_DISPATCH["_grade() dispatcher\ntask_criticality -> grade_criticality()\ntask_severity -> grade_severity()\ntask_root_cause_assignee -> grade_root_cause_assignee()"]
+    end
+
+    PROCESSED -->|"load JSON on init"| ENV_INIT
+    ENV_INIT --> ENV_RESET
+    ENV_RESET -->|"BugTriageObservation"| ENV_STEP
+    ENV_STEP --> GRADE_DISPATCH
+
+    %% ============================================================
+    %% GRADING ENGINE
+    %% ============================================================
+    subgraph GRADING ["GRADING ENGINE"]
+        direction TB
+        G1["grade_criticality(action, gt)\nExact match: 1.0\nWrong: 0.0"]
+        G2["grade_severity(action, gt)\nExact: 1.0 | Off-by-1: 0.7\nOff-by-2: 0.4 | Off-by-3+: 0.0"]
+        G3["grade_root_cause_assignee(action, gt)\n0.6 x root_cause_score:\n  exact=1.0, related=0.5, wrong=0.0\n0.4 x assignee_score:\n  exact=1.0, same_team=0.6, wrong=0.0"]
+        REWARD_CALC["RewardCalculator.compute()\nbase_score (from grader)\n+ confidence_bonus (±0.08/0.02/-0.05)\n+ reasoning_bonus (+0.05/+0.02/0.0)\n+ edge_case_bonus (+0.10)\n= total (clamped 0.0-1.0)"]
+    end
+
+    GRADE_DISPATCH -->|"task_criticality"| G1
+    GRADE_DISPATCH -->|"task_severity"| G2
+    GRADE_DISPATCH -->|"task_root_cause_assignee"| G3
+    G1 -->|"base_score"| REWARD_CALC
+    G2 -->|"base_score"| REWARD_CALC
+    G3 -->|"base_score"| REWARD_CALC
+    REWARD_CALC -->|"BugTriageReward\n(total float)"| ENV_STEP
+
+    %% ============================================================
+    %% INFERENCE PIPELINE
+    %% ============================================================
+    subgraph INFERENCE ["INFERENCE PIPELINE"]
+        direction TB
+        MAIN["main()\nfor task in [criticality, severity, root_cause_assignee]:\n  print [START]\n  run_task(env, task_id, 60 episodes)\n  print [END] with avg score"]
+        RUN_TASK["run_task(env, task_id, num_episodes)\nfor ep in range(num_episodes):\n  1. obs = env.reset(task_id)\n  2. Build user_prompt from bug\n  3. call_llm() with task prompt\n  4. Parse response -> BugTriageAction\n  5. obs, reward, done, info = env.step(action)\n  6. Print [STEP]"]
+        CALL_LLM["call_llm(system_prompt, user_prompt)\n- OpenAI chat.completions.create()\n- Strip markdown fences\n- Regex JSON extraction\n- Return parsed dict or error"]
+        DEFAULTS_FB["DEFAULTS fallback\nIf LLM fails:\n  criticality -> non_critical\n  severity -> 3\n  root_cause -> bug"]
+    end
+
+    MAIN --> RUN_TASK
+    RUN_TASK --> CALL_LLM
+    CALL_LLM -->|"error"| DEFAULTS_FB
+    DEFAULTS_FB --> RUN_TASK
+
+    %% ============================================================
+    %% LLM PROVIDER
+    %% ============================================================
+    subgraph LLM ["LLM PROVIDER"]
+        direction TB
+        GROQ["Groq API\nhttps://api.groq.com/openai/v1\nModel: llama-3.1-8b-instant\nTemperature: 0.3\nMax tokens: 300\nTimeout: 30s"]
+        PROMPTS["System Prompts\n1. CRITICALITY: critical/non_critical\n2. SEVERITY: score 1-5\n3. TRIAGE: root_cause + assignee\nAll with few-shot examples + CoT"]
+    end
+
+    CALL_LLM -->|"OpenAI API call"| GROQ
+    PROMPTS --> CALL_LLM
+
+    %% ============================================================
+    %% STDOUT OUTPUT FORMAT
+    %% ============================================================
+    subgraph OUTPUT ["STDOUT OUTPUT (OpenEnv Format)"]
+        direction TB
+        START["[START] task=task_criticality env=bug-triage model=llama-3.1-8b-instant"]
+        STEP["[STEP] step=1 action=classify('critical') reward=1.00 done=true error=null"]
+        END_OUT["[END] success=true steps=60 score=0.700 rewards=1.00,0.00,..."]
+        OVERALL["Overall score: 0.603"]
+    end
+
+    RUN_TASK -->|"print"| START
+    RUN_TASK -->|"print each episode"| STEP
+    RUN_TASK -->|"print summary"| END_OUT
+    MAIN -->|"print final"| OVERALL
+
+    %% ============================================================
+    %% DEPLOYMENT
+    %% ============================================================
+    subgraph DEPLOY ["DEPLOYMENT"]
+        direction TB
+        DOCKER_BUILD["Docker Build\npython:3.11-slim\npip install requirements.txt\nCOPY src/ data/ inference.py\nEXPOSE 7860"]
+        DOCKER_RUN["Docker Run\n--cpus=2 --memory=8g\n-e API_BASE_URL=...\n-e MODEL_NAME=...\n-e OPENAI_API_KEY=..."]
+        HF_SPACE["HuggingFace Spaces\nInder7277/bug-triage-env\nDocker SDK | CPU Basic\nSecrets: API keys\nTag: openenv"]
+    end
+
+    DOCKER_BUILD --> DOCKER_RUN
+    DOCKER_RUN -->|"CMD python inference.py"| MAIN
+    DOCKER_BUILD --> HF_SPACE
+
+    %% ============================================================
+    %% SHARED MODEL CONNECTIONS
+    %% ============================================================
+    MODELS -->|"BugReport\nBugTriageObservation\nBugGroundTruth"| ENV
+    MODELS -->|"BugTriageAction\nBugGroundTruth\nRootCauseCategory"| GRADERS
+    MODELS -->|"BugTriageAction\nBugGroundTruth\nBugTriageReward"| REWARD
+    MODELS -->|"BugTriageAction"| INF
+    TASKS -->|"TASK_DEFINITIONS\nget_all_task_ids()\nvalidate_task_id()"| ENV
+    GRADERS -->|"grade_criticality()\ngrade_severity()\ngrade_root_cause_assignee()"| ENV
+    REWARD -->|"RewardCalculator"| ENV
+
+    %% ============================================================
+    %% INTER-FILE DATA FLOW
+    %% ============================================================
+    INF -->|"BugTriageEnv()"| ENV
+    ENV_RESET -->|"BugTriageObservation\n(bug title, body, labels,\navailable_assignees)"| RUN_TASK
+    RUN_TASK -->|"BugTriageAction\n(criticality/severity/\nroot_cause+assignee)"| ENV_STEP
+
+    %% ============================================================
+    %% TESTING
+    %% ============================================================
+    subgraph TESTING ["TEST SUITE (61 tests, all passing)"]
+        direction LR
+        T_ENV["tests/test_env.py\n- reset() returns valid obs\n- step() validates actions\n- task cycling works\n- state() returns correct dict"]
+        T_GRADERS["tests/test_graders.py\n- criticality exact match\n- severity partial credit\n- root cause + assignee\n- related categories\n- edge cases"]
+    end
+
+    %% ============================================================
+    %% STYLING - matching rl_env_flow.svg palette
+    %% ============================================================
+    classDef pipeline fill:#E3F2FD,stroke:#2196F3,color:#333
+    classDef env fill:#ECECFF,stroke:#9370DB,color:#333
+    classDef grading fill:#90EE90,stroke:#4CAF50,color:#333
+    classDef inference fill:#FFD700,stroke:#FF9800,color:#333
+    classDef data fill:#ffffde,stroke:#aaaa33,color:#333
+    classDef external fill:#E0E0E0,stroke:#000,color:#333
+    classDef output fill:#E3F2FD,stroke:#2196F3,color:#333
+
+    class GF,UTILS,FETCH,GH_API,RAW,PROCESSED,CONTRIBS pipeline
+    class ENV,TASKS,ENV_INIT,ENV_RESET,ENV_STEP,GRADE_DISPATCH env
+    class GRADERS,REWARD,G1,G2,G3,REWARD_CALC grading
+    class INF,DOCKER,OPENENV,README,MAIN,RUN_TASK,CALL_LLM,DEFAULTS_FB inference
+    class MODELS,REQS data
+    class GROQ,PROMPTS external
+    class START,STEP,END_OUT,OVERALL,DOCKER_BUILD,DOCKER_RUN,HF_SPACE,GT_CRIT,GT_SEV,GT_RC,GT_ASN output
+    class T_ENV,T_GRADERS env

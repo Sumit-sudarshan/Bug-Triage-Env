@@ -1,0 +1,26 @@
+# OpenEnv ignore file (Aggressive)
+dhurandhar-venv
+dhurandhar-venv/*
+venv
+venv/*
+env
+env/*
+__pycache__
+__pycache__/*
+*.pyc
+.git
+.git/*
+.DS_Store
+.pytest_cache
+.pytest_cache/*
+llm_cache.json
+output.log
+data/bugs_raw.json
+data
+data/*
+models
+models/*
+.claude
+.claude/*
+.env
+.env.local

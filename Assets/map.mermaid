@@ -1,0 +1,90 @@
+graph TD
+    subgraph "Data Pipeline (Sumit)"
+        GF["github_fetcher.py
+        Fetches real bug reports from
+        GitHub API using PyGithub"]
+        BR["data/bugs_raw.json
+        Raw GitHub issues with
+        comments, labels, metadata"]
+        BP["data/bugs_processed.json
+        Cleaned bugs with ground truth
+        labels: criticality, severity,
+        root cause, assignee"]
+        TS["tasks.py
+        Defines 3 task configs:
+        criticality, severity,
+        root cause + assignee"]
+        CT["data/contributors.json
+        Maps contributors to teams
+        for partial-credit scoring"]
+
+        GF --> BR --> BP
+        TS -.-> BP
+    end
+
+    subgraph "Shared Contract"
+        MD["src/models.py
+        Pydantic models: BugReport,
+        Observation, Action, Reward,
+        GroundTruth + Enums"]
+    end
+
+    subgraph "RL Environment (Sumit)"
+        ENV["src/env.py
+        OpenEnv-compliant env with
+        reset(), step(), state()
+        methods"]
+        UT["src/utils.py
+        Helper functions for
+        data loading & validation"]
+        UT -.-> ENV
+    end
+
+    subgraph "Grading Engine (Inderpal)"
+        GR["src/graders.py
+        3 graders: binary criticality,
+        partial-credit severity,
+        weighted root cause + assignee"]
+        RW["src/reward.py
+        RewardCalculator: base score
+        + confidence, reasoning,
+        edge case bonuses"]
+        GR --> RW
+    end
+
+    subgraph "Execution & Delivery (Inderpal)"
+        INF["inference.py
+        Entry point: LLM-based baseline
+        agent using OpenAI client.
+        Outputs [START]/[STEP]/[END]"]
+        DF["Dockerfile
+        Python 3.11-slim container
+        2 vCPU / 8GB RAM target"]
+        OY["openenv.yaml
+        Environment metadata:
+        tasks, graders, env vars"]
+        RM["README.md
+        Setup, task docs, reward
+        function, baseline scores"]
+    end
+
+    %% Data flow
+    BP --> ENV
+    CT --> ENV
+    MD -.->|"types"| ENV
+    MD -.->|"types"| GR
+    MD -.->|"types"| INF
+
+    ENV -->|"calls graders"| GR
+    ENV -->|"computes reward"| RW
+
+    INF ==>|"drives episodes"| ENV
+    DF -.->|"runs"| INF
+
+    %% Styling
+    style MD fill:#f9f,stroke:#333,stroke-width:4px
+    style INF fill:#00d2ff,stroke:#333,stroke-width:2px
+    style BP fill:#ffcc00,stroke:#333,stroke-width:2px
+    style GR fill:#90EE90,stroke:#333,stroke-width:2px
+    style RW fill:#90EE90,stroke:#333,stroke-width:2px
+    style ENV fill:#FFB366,stroke:#333,stroke-width:2px

@@ -1,0 +1,50 @@
+# Environment
+.env
+.env.local
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
+dhurandhar-venv/
+venv/
+env/
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Data — keep raw fetched data out of git (large, reproducible via pipeline)
+data/bugs_raw.json
+
+# Trained models (large, reproducible via train_rl.py)
+models/
+
+# Logs
+*.log
+logs/
+
+# Temporary / Tool
+*.tmp
+*.bak
+.claude/
+llm_cache.json
+
+# Internal hackathon reference notes — not part of submission
+hackathon.md

@@ -1,0 +1,15 @@
+# Bug Report Triage — RL Training Extras
+# Required only by train_rl.py (GRPO + LoRA fine-tuning).
+# NOT installed by the Docker build for the OpenEnv server, since the
+# environment + inference baseline only need the core runtime in
+# requirements.txt and these libraries (~3 GB) would blow the 8 GB / 2 vCPU
+# build budget on judge machines.
+#
+# Install with: pip install -r requirements.txt -r requirements-rl.txt
+
+torch>=2.1
+transformers>=4.36
+trl>=1.0
+peft>=0.7
+datasets>=2.14
+accelerate>=0.25
